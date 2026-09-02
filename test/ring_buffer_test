@@ -1,0 +1,16 @@
+#include<stdio.h>
+struct snake
+{
+    int head_loc;
+    int tail_loc;
+    int length;
+    int body[];
+
+};
+void main(){
+    struct snake SNAKE;
+    SNAKE.length=5;
+    SNAKE.head_loc=0;
+    SNAKE.tail_loc=SNAKE.head_loc+SNAKE.length;
+    printf(SNAKE.head_loc,SNAKE.tail_loc);   
+}
