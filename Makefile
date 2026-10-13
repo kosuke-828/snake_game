@@ -8,6 +8,7 @@ BUILD_DIR ?= build
 
 TEST_SRC := test/ring_buffer_test.c
 TEST_RINGBUFFER := $(BUILD_DIR)/ring_buffer_test
+TEST_INPUT = $(BUILD_DIR)/direction
 ASAN_TEST_RINGBUFFER := $(BUILD_DIR)/ring_buffer_test_asan
 
 .PHONY: all build run test asan clean
@@ -17,8 +18,11 @@ all: build
 build: $(TEST_RINGBUFFER)
 run: test
 
-test: $(TEST_RINGBUFFER)
+test_ringbuffer: $(TEST_RINGBUFFER)
 	"$(abspath $(TEST_RINGBUFFER))"
+
+test_input: $(TEST_INPUT)
+	"$(abspath $(TEST_INPUT)"
 
 asan: $(ASAN_TEST_RINGBUFFER)
 	"$(abspath $(ASAN_TEST_RINGBUFFER))"
