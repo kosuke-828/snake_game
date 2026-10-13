@@ -10,25 +10,48 @@ struct Vec3
 struct Vec3 direction={0,1,0};
 char input;
 
-void INPUT_DIRECTION(struct Vec3*input){
-    
-
+void INITE_DIRECTION(struct Vec3*input){
+    input->x=0;
+    input->y=0;
+    input->z=0;
 }
 
 struct Vec3 main(){
     scanf(" %c",&input);
     if(input=="w"){
-        direction.y={0,1,0}
+        INITE_DIRECTION(&input);
+        direction.y=1;
     }
     else if (input=="a")
-    {
-        direction={1,0,0};
+    {  
+        INITE_DIRECTION(&input);
+        direction.x=1;
     }
     else if (input=="d")
     {
-        direction={-1,0,0};
+        INITE_DIRECTION(&input);
+        direction.x=-1;
     }
-    
-    
+    else if (input=="s")
+    {
+        INITE_DIRECTION(&input);
+        direction.y=-1;
+    }
+    else if (input=="q")
+    {
+        INITE_DIRECTION(&input);
+        direction.z=1;
+    }
+    else if (input=="e")
+    {
+        INITE_DIRECTION(&input);
+        direction.z=-1;
+    }
+    else 
+    {
 
+    }
+    printf("x,y,z %d %d %d \n",direction.x, direction.y, direction.z);
+    return direction;
+    
 }

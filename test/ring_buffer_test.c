@@ -89,7 +89,7 @@ struct Vec3 CALC_NEW_HEAD_LOC(const struct SNAKE*snake){
 
 int main(){    
     struct Vec3 new_head_loc;
-    struct SNAKE snake={3,2,0,{{10,38,30},{10,39,30},{10,40,30},{0,0,0},{0,0,0},{0,0,0}},{0,0,0},{0,1,0}};
+    struct SNAKE snake={3,2,0,{{10,38,30},{10,39,30},{10,40,30},{0,0,0},{0,0,0},{0,0,0}},{0,1,0}};
     for (int i=0; i<20; i++){
         bool collision=0;
         int check_num=0;
@@ -125,36 +125,12 @@ int main(){
         else{
             check_num=snake.LENGTH;
         }
-        //for (int old = 0; old<check_num; old++)
-        //{   
-        //    int target_index=(snake.head_index-old+BUFFER_SIZE)%BUFFER_SIZE;
-        //    if (COMP_LOC(new_head_loc,snake.ring_buffer[target_index]))
-        //    {
-        //        collision=1;
-        //        break;
-        //    }   
-        //}
         collision=(SELF_COLLISION(check_num, &snake, new_head_loc)||FIELD_COLLISION(new_head_loc));
-        //if(new_head_loc.x>field_MAX || new_head_loc.x<field_MIN ||
-        //   new_head_loc.y>field_MAX || new_head_loc.y<field_MIN ||
-        //   new_head_loc.z>field_MAX || new_head_loc.z<field_MIN )
-        //   {
-        //    collision=1;
-        //   }
         if (collision==1)
         {
             break;
         }
-        GROW_SNAKE(&snake, will_grow);
-        //if(will_grow){
-        //    snake.head_index=(snake.head_index+1)%BUFFER_SIZE;
-        //    snake.LENGTH+=1;
-        
-        //}
-        //else{
-        //    snake.head_index=(snake.head_index+1)%BUFFER_SIZE;
-        //    snake.tail_index=(snake.tail_index+1)%BUFFER_SIZE;        
-        //}       
+        UPDATE_SNAKE(&snake, will_grow);
         snake.ring_buffer[snake.head_index]=new_head_loc;
         if(generate_food){
             GENERATE_FOOD(&snake, &food);
